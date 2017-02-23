@@ -1,0 +1,33 @@
+subprojects {
+	apply plugin: 'java'
+	apply plugin: 'idea'
+
+	group = 'org.apache.camel'
+	version = '1.0'
+
+	repositories {
+	    mavenCentral()
+	}
+
+	dependencies {
+		testCompile 'org.apache.camel:camel-test:2.18.2'
+	    testCompile 'org.apache.logging.log4j:log4j-api:2.7'
+	    testCompile 'org.apache.logging.log4j:log4j-core:2.7'
+	    testCompile 'org.apache.logging.log4j:log4j-slf4j-impl:2.7'
+	}
+}
+
+project(':camel-groovier') {
+	dependencies {
+	    compile 'org.codehaus.groovy:groovy-all:2.4.8'
+	    compile 'org.apache.camel:camel-core:2.18.2'
+	}
+}
+
+project(':camel-groovier-example') {
+	apply plugin: 'groovy'
+
+	dependencies {
+	    compile project(':camel-groovier')
+	}
+}
